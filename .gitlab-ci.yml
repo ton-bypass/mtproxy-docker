@@ -5,8 +5,7 @@ build image:
   services:
     - 'docker:dind'
   variables:
-    COMMIT_SHA: '$CI_COMMIT_SHA:0:8'
-    IMAGE_TAG: '$CI_REGISTRY_IMAGE:$COMMIT_SHA'
+    IMAGE_NAME: $CI_REGISTRY_IMAGE
     DOCKER_HOST: 'tcp://docker:2375'
   stage: build
   only:
@@ -17,5 +16,5 @@ build image:
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
   script:
-    - docker build --pull -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
+    - 'docker build --pull -t $IMAGE_NAME:${CI_COMMIT_SHA:0:8} .'
+    - 'docker push $IMAGE_NAME:${CI_COMMIT_SHA:0:8}'
