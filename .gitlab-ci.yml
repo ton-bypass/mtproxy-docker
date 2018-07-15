@@ -5,9 +5,8 @@ build image:
   services:
     - 'docker:dind'
   variables:
-    GIT_SUBMODULE_STRATEGY: recursive
-    GIT_SSL_NO_VERIFY: 'true'
-    IMAGE_TAG: '$CI_REGISTRY_IMAGE:${CI_COMMIT_SHA:0:8}'
+    COMMIT_SHA: '${CI_COMMIT_SHA:0:8}'
+    IMAGE_TAG: '$CI_REGISTRY_IMAGE:$COMMIT_SHA'
     DOCKER_HOST: 'tcp://docker:2375'
   stage: build
   only:
@@ -18,5 +17,5 @@ build image:
   before_script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
   script:
-    - docker build --pull -t "$IMAGE_TAG" .
-    - docker push "$IMAGE_TAG"
+    - docker build --pull -t $IMAGE_TAG .
+    - docker push $IMAGE_TAG
