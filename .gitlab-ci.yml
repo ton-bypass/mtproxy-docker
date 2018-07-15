@@ -5,7 +5,7 @@ build image:
   services:
     - 'docker:dind'
   variables:
-    COMMIT_SHA: '${CI_COMMIT_SHA:0:8}'
+    COMMIT_SHA: '$CI_COMMIT_SHA:0:8'
     IMAGE_TAG: '$CI_REGISTRY_IMAGE:$COMMIT_SHA'
     DOCKER_HOST: 'tcp://docker:2375'
   stage: build
