@@ -1,0 +1,9 @@
+{
+	"servers": {
+		"mtproxy-gh": {
+			"url": "https://gitmcp.io/TelegramMessenger/MTProxy",
+			"type": "http"
+		}
+	},
+	"inputs": []
+}
