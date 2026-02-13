@@ -109,4 +109,4 @@ echo "[*]   Make sure to fix the links in case you run the proxy on a different 
 echo
 echo '[+] Starting proxy...'
 sleep 1
-exec /usr/bin/mtproxyd -p 2398 -H 18443 -D google.com -C 60000 --aes-pwd "$PROXY_SECRET" -u root "$CONFIG" --allow-skip-dh --nat-info "$INTERNAL_IP:$IP" "${SECRET_ARGS[@]}" "${TAG_ARGS[@]}"
+exec /usr/bin/mtproxyd -v -6 -p 2398 -H 18443 -C 60000 --aes-pwd "$PROXY_SECRET" -u root "$CONFIG" --allow-skip-dh "${SECRET_ARGS[@]}" "${TAG_ARGS[@]}"
